@@ -102,3 +102,8 @@ Show a chart with the number of upcoming events in each city 
 Given the user has not selected a city 
 When the user wants to compare events between cities 
 Then they should be able to access a chart with the number of upcoming events in each city
+
+## Use of Serverless
+
+The app will use a token, which will be generated in an authorization server. This server will host Lambda functions created to deliver authorization tokens to users. With this token, users will have access to event data from Google Calendar API.
+
