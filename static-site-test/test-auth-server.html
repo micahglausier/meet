@@ -101,7 +101,10 @@
           })
           .then(function (json) {
             events.innerText = JSON.stringify(json, null, 2);
-          });
+          })
+          if (getCalendarEvents.length === 0) {
+            alert('There are no events!');
+          };
       };
     </script>
   </body>
