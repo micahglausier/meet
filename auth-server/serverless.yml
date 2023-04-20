@@ -20,12 +20,12 @@ functions:
   getAccessToken:
     handler: handler.getAccessToken
     events:
-    - http:
-        path: api/token/{code}
-        method: get
+      - http:
+          path: api/token/{code}
+          method: get
   getCalendarEvents:
     handler: handler.getCalendarEvents
     events:
-    - http:
-        path: api/get-events/{access_token}
-        method: get
+      - http:
+          path: api/get-events/{access_token}
+          method: get

@@ -4,7 +4,6 @@ const calendar = google.calendar("v3");
 
 const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
 
-
 const credentials = {
   client_id: process.env.CLIENT_ID,
   project_id: process.env.PROJECT_ID,
@@ -14,7 +13,10 @@ const credentials = {
   token_uri: "https://oauth2.googleapis.com/token",
   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
   redirect_uris: ["https://micahglausier.github.io/meet/"],
-  javascript_origins: ["https://micahglausier.github.io", "http://localhost:3000"],
+  javascript_origins: [
+    "https://micahglausier.github.io",
+    "http://localhost:3000",
+  ],
 };
 
 const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
