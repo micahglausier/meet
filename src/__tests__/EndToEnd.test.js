@@ -6,10 +6,10 @@ describe("show/hide an event details", () => {
     let page;
     jest.setTimeout(40000);
     beforeAll(async () => {
-    //   browser = await puppeteer.launch({
-    //     headless: false,
-    //     slowMo: 250, // slow actions by 250ms
-    //     ignoreDefaultArgs: ["--disable-extensions"], // ignores default settings
+      browser = await puppeteer.launch({
+        headless: false,
+        slowMo: 250, // slow actions by 250ms
+        ignoreDefaultArgs: ["--disable-extensions"], // ignores default settings
       });
   
       page = await browser.newPage();
