@@ -1,42 +1,52 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+
 
 class NumberOfEvents extends Component {
+  static defaultProps = {
+    numberOfResults: 32,
+  };
   state = {
-    number: 32,
-  };
+    numberOfEvents: this.props.numberOfResults,
+  }
 
-  handleNumberChange = (event) => {
-    const minValue = 0; // new
-    const maxValue = 32; // new
-    let inputValue = event.target.value;
-    inputValue = Math.max(
-      Number(minValue),
-      Math.min(Number(maxValue), Number(inputValue))
-    ); // new
-    this.setState({ number: inputValue });
-    if (inputValue < 1 || inputValue > 32) {
-      this.props.updateEvents(null, []);
-    } else {
-      this.setState({ errorText: "" });
-      this.props.updateEvents(null, inputValue);
+  handleInputChange = (event) => {
+    const value = parseInt(event.target.value, 10);
+    if (isNaN(value)) {
+      return;
     }
+    if (value > 32) {
+      this.setState({
+        errorText: 'Number should be less than 32',
+      });
+      return;
+    }
+    if (value < 1) {
+      this.setState({
+        errorText: 'Number should be at least 1',
+      });
+    } else {
+      this.setState({
+        errorText: '',
+      });
+    }
+    this.setState({ numberOfEvents: value });
+    this.props.updateNumberOfResults(value); // Call the updateNumberOfResults function passed from App.js
   };
-
+  
   render() {
     return (
-      <div className="NumberOfEvents">
-        <h3>number of events:</h3>
+      <div className="number-of-events">
+        <label htmlFor="event-number-input">Number of Events: </label>
         <input
-          id="number-of-events"
           type="number"
-          className="number"
-          value={this.state.number}
-          onChange={this.handleNumberChange}
-          min="0"
+          className="event-number-input"
+          id="event-number-input"
+          value={this.state.numberOfEvents}
+          onChange={this.handleInputChange}
+          placeholder="Enter number of events"
         />
       </div>
     );
   }
 }
-
 export default NumberOfEvents;

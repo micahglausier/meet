@@ -41,21 +41,21 @@ As a user I should be able to show and hide event details So that I can get
 Scenarios
 Scenario 1:
 An event element is collapsed by default 
-Given the user has just selected the city for which they wanted to browse events 
-When the user gets the list of events in that city 
-Then event elements should be collapsed by default
+Given that a user has not selected a city
+When the user opens the app and performs no action
+Then all events details should be hidden.
 
 Scenario 2:
-User can expand an event to see its details 
-Given the user has identified an event of interest 
-When the user clicks on that event element 
-Then the element should expand and show its details
+User can expand an event to see its details
+Given that a user has selected an event 
+When the user clicks on the event show details button
+Then the event details should be displayed.
 
 Scenario 3:
-User can collapse an event to hide its details 
-Given the user has gotten all information they need about the event 
-When the user clicks on that event element 
-Then the element should collapse and hide its details again
+User can collapse an event to hide its details
+Given that a user has finished viewing a selected event 
+When the user clicks on the details button again 
+Then the event details should be hidden.
 
 Feature 3: Specify Number of Events
 User story
@@ -63,16 +63,16 @@ As a user I should be able to select the number of events that I see, giving 
 
 Scenarios
 Scenario 1:
-When user hasn’t specified a number, 32 is the default number 
-Given the user has not selected the number of events they want to see per city 
-When the user receives the list of events in that city 
-Then a number of 32 events should be displayed by default
+When user has not specified a number let 32 be the default number 
+Given that a user has not specified a number of events 
+When selecting cities 
+Then a default number of 32 is loaded on the page
 
 Scenario 2:
 User can change the number of events they want to see 
-Given the user received a list of 32 events per selected city 
-When the user wants to see more or less events per city 
-Then they should be able to adjust the event number
+Given that the user does not want to view all events 
+When user changes the number of events in the input box 
+Then the User should be able to change the number of events they want to see.
 
 Feature 4: Use the App When Offline
 User story
