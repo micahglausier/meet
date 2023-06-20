@@ -1,52 +1,48 @@
 import React, { Component } from 'react';
+import { ErrorAlert } from "./Alert";
 
 
 class NumberOfEvents extends Component {
-  static defaultProps = {
-    numberOfResults: 32,
-  };
-  state = {
-    numberOfEvents: this.props.numberOfResults,
-  }
-
-  handleInputChange = (event) => {
-    const value = parseInt(event.target.value, 10);
-    if (isNaN(value)) {
-      return;
+    constructor() {
+      super();
+      this.state = {
+        query: 32,
+        errorText: "",
+      };
     }
-    if (value > 32) {
-      this.setState({
-        errorText: 'Number should be less than 32',
-      });
-      return;
-    }
-    if (value < 1) {
-      this.setState({
-        errorText: 'Number should be at least 1',
-      });
-    } else {
-      this.setState({
-        errorText: '',
-      });
-    }
-    this.setState({ numberOfEvents: value });
-    this.props.updateNumberOfResults(value); // Call the updateNumberOfResults function passed from App.js
-  };
   
-  render() {
-    return (
-      <div className="number-of-events">
-        <label htmlFor="event-number-input">Number of Events: </label>
-        <input
-          type="number"
-          className="event-number-input"
-          id="event-number-input"
-          value={this.state.numberOfEvents}
-          onChange={this.handleInputChange}
-          placeholder="Enter number of events"
-        />
-      </div>
-    );
+    handleInputChanged = (event) => {
+      const value = event.target.value;
+      if (value >= 1 || value <= 32) {
+        this.setState({
+          query: value,
+          errorText: "",
+        });
+        this.props.updateEvents(this.props.selectedCity, value);
+      }
+      if (value < 1 || value > 32) {
+        this.setState({
+          query: value,
+          errorText: "Please enter a valid number",
+        });
+      }
+    };
+  
+    render() {
+      return (
+        <div className='numberOfEvents'>
+          <input
+            type='number'
+            className='numberOfEvents'
+            min={1}
+            max={32}
+            value={this.state.query}
+            onChange={this.handleInputChanged}
+          />
+          <ErrorAlert className='errorMessage' text={this.state.errorText} />
+        </div>
+      );
+    }
   }
-}
-export default NumberOfEvents;
+  
+  export default NumberOfEvents;
