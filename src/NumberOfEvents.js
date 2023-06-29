@@ -31,6 +31,7 @@ class NumberOfEvents extends Component {
     render() {
       return (
         <div className='numberOfEvents'>
+          <label htmlFor="CitySearch">Number of Events:</label>
           <input
             type='number'
             className='numberOfEvents'

@@ -4,9 +4,12 @@
   padding: 2% 5%;
 }
 
+
+
 .App * {
   box-sizing: border-box;
 }
+
 
 ul {
   padding: 0;
@@ -31,9 +34,10 @@ input[type="number"] {
   outline: none;
   border: 1px solid #ccc;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 15px;
   align-self: center;
   height: 38px;
+  text-align: center;
 }
 
 .city {
@@ -55,16 +59,18 @@ input[type="number"] {
   z-index: 2;
   align-self: center;
   margin: 0;
-  top: 43px;
+  top: 68px;
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
 
 .suggestions > li {
-  text-align: left;
+  text-align: center;
   padding: 8px 6px 8px 10px;
-  background-color: #eee;
+  background-color: #355c7d;
   cursor: default;
+  margin-top: 4px;
+  border: 1px solid #B2D6FD
 }
 
 .suggestions > li:last-child {
@@ -80,29 +86,45 @@ input[type="number"] {
   padding: 10px 10px 35px;
   margin-bottom: 10px;
   text-align: left;
-  border: 1px solid #ccc;
+  border: 1px solid #355c7d;
+  background-color: #355c7d;
   border-radius: 4px;
   position: relative;
 }
 
-.details-btn {
+.summary {
+  color: #F1F1E6;
+  text-shadow: -1px -1px 0px var(--background),
+    3px 3px 0px var(--background),
+    6px 6px 0px #00000055;
+}
+
+.event-start, 
+.event-location,
+.event-details {
+  color: #F1F1E6;
+}
+
+.details-button {
   position: absolute;
-  right: 5px;
   bottom: 5px;
   padding: 5px 8px;
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+  background-color: #F1F1E6;
 }
 
 .name {
   font-size: 18px;
   font-weight: 600;
+  color: #F1F1E6;
 }
 
 .group-name {
   text-transform: uppercase;
   font-size: 14px;
+  color: #F1F1E6;
 }
 
 .going,
@@ -116,7 +138,7 @@ input[type="number"] {
 
 .numberOfEvents {
   width: 200px;
-  margin: 20px auto;
+  margin: auto;
   text-align: center;
 }
 
@@ -126,11 +148,12 @@ input[type="number"] {
   grid-gap: 20px;
   padding: 20px;
   font-family: sans-serif;
+  background: #355c7d;
 }
 
 .Alert {
-  position: fixed;
-  top: 20px;
+  top: 10px;
+  display: flex;
 }
 
 .data-vis-wrapper {
