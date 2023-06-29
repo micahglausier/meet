@@ -5,8 +5,7 @@
     {
       "src": "favicon.ico",
       "sizes": "48x48",
-      "type": "image/x-icon",
-      "purpose": "any maskable"
+      "type": "image/x-icon"
     },
     {
       "src": "meet-app-192.png",
