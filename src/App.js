@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
-import CitySearch from "./CitySearch";
-import EventList from "./EventList";
-import NumberOfEvents from "./NumberOfEvents";
+import CitySearch from "./components/CitySearch";
+import EventList from "./components/EventList";
+import NumberOfEvents from "./components/NumberOfEvents";
 import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
 import "./nprogress.css";
-import { WarningAlert } from "./Alert";
+import { WarningAlert } from "./components/Alert";
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 
