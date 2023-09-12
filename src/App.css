@@ -1,14 +1,28 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+@import url('https://fonts.googleapis.com/css2?family=Phudu:wght@600&display=swap');
+
+* {
+  background-color: #343F71;
+}
+
 .App {
   text-align: center;
   padding: 2% 5%;
 }
 
-
-
 .App * {
   box-sizing: border-box;
+  background-color: white;
 }
+
+.app-header {
+  margin: 3% auto;
+  padding: 0%;
+  width: 100%;
+  font-family: 'Phudu', cursive;
+  font-size: 56px;
+}
+
 
 
 ul {
@@ -18,13 +32,7 @@ ul {
 
 p {
   margin: 5px 0;
-}
-
-.display-none {
-  display: none;
-}
-.showSuggestions {
-  display: block;
+  padding: 8px;
 }
 
 input[type="text"],
@@ -32,45 +40,70 @@ input[type="number"] {
   padding: 8px 6px 8px 10px;
   border-radius: 4px;
   outline: none;
-  border: 1px solid #ccc;
+  border: 1px solid #FBC40E;
   font-size: 14px;
-  line-height: 15px;
+  line-height: 20px;
   align-self: center;
-  height: 38px;
-  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 20px;
 }
 
 .city {
   width: 250px;
 }
 
-.CitySearch {
+#city-search {
   display: flex;
   flex-direction: column;
-  flex-basis: 300px;
-  max-width: 300px;
   margin: auto;
   position: relative;
+  text-align: center;
 }
+
+#event-number {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  position: relative;
+  text-align: center;
+}
+
+/* alerts */
+
+.alerts-container {
+  right: 5%;
+  z-index: 1000;
+  background-color: transparent;
+  width: 250px;
+  position: absolute;
+  top: 90px;
+  z-index: 2;
+  align-self: center;
+}
+
+label {
+  margin: 15px;
+  font-weight: bold;
+}
+
+/* city suggestions */
 
 .suggestions {
   width: 250px;
   position: absolute;
+  top: 90px;
   z-index: 2;
   align-self: center;
   margin: 0;
-  top: 68px;
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
 
 .suggestions > li {
-  text-align: center;
+  text-align: left;
   padding: 8px 6px 8px 10px;
-  background-color: #355c7d;
+  background-color: #FBC40E;
   cursor: default;
-  margin-top: 4px;
-  border: 1px solid #B2D6FD
 }
 
 .suggestions > li:last-child {
@@ -79,156 +112,53 @@ input[type="number"] {
 }
 
 .suggestions > li:hover {
-  background-color: #bcdcdb;
+  background-color: #f34c19;
+}
+
+/* charts */
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 3%;
+  padding: 1% 0;
+}
+
+/* event list */
+#event-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 15px;
+  row-gap: 15px;
+  background-color: #343F71;
 }
 
 .event {
   padding: 10px 10px 35px;
-  margin-bottom: 10px;
   text-align: left;
-  border: 1px solid #355c7d;
-  background-color: #355c7d;
+  border: 1px solid whitesmoke;
   border-radius: 4px;
   position: relative;
 }
 
-.summary {
-  color: #F1F1E6;
-  text-shadow: -1px -1px 0px var(--background),
-    3px 3px 0px var(--background),
-    6px 6px 0px #00000055;
-}
-
-.event-start, 
-.event-location,
-.event-details {
-  color: #F1F1E6;
-}
-
-.details-button {
+.details-btn, .hide-details-btn {
   position: absolute;
+  right: 5px;
   bottom: 5px;
   padding: 5px 8px;
   border-radius: 4px;
-  outline: none;
+  border: 4px solid #343F71;
   cursor: pointer;
-  background-color: #F1F1E6;
+  margin-top: 5px;
+  font-weight: bold;
 }
 
-.name {
-  font-size: 18px;
-  font-weight: 600;
-  color: #F1F1E6;
+.hide-details-btn {
+  z-index: 100;
+  padding: 5px 12px;
 }
 
-.group-name {
-  text-transform: uppercase;
-  font-size: 14px;
-  color: #F1F1E6;
-}
-
-.going,
-.visibility {
-  font-style: italic;
-}
-
-.description {
-  overflow-x: hidden;
-}
-
-.numberOfEvents {
-  width: 200px;
-  margin: auto;
-  text-align: center;
-}
-
-.button-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 20px;
-  padding: 20px;
-  font-family: sans-serif;
-  background: #355c7d;
-}
-
-.Alert {
-  top: 10px;
-  display: flex;
-}
-
-.data-vis-wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-.data-vis-wrapper .recharts-responsive-container {
-  min-width: 100%;
-  display: flex;
-}
-.recharts-surface {
-  overflow: visible;
-}
-
-.login-button {
-  color: #494949;
-  text-transform: uppercase;
-  text-decoration: none;
-  background: #ffffff;
-  padding: 20px;
-  border: 4px solid #494949;
-  display: inline-block;
-  transition: all 0.4s ease 0s;
-  min-width: 10rem;
-  margin: 1rem;
-}
-
-.google-btn {
-  width: 184px;
-  height: 42px;
-  margin: 1rem;
-  background-color: #4285f4;
-  border-radius: 2px;
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
-}
-.google-btn:hover {
-  box-shadow: 0 0 6px #4285f4;
-}
-.google-btn:active {
-  background: #1669f2;
-}
-.google-icon-wrapper {
-  position: absolute;
-  margin-top: 1px;
-  margin-left: 1px;
-  width: 40px;
-  height: 40px;
-  border-radius: 2px;
-  background-color: #fff;
-}
-.google-icon {
-  position: absolute;
-  margin-top: 11px;
-  margin-left: -8px;
-  width: 18px;
-  height: 18px;
-}
-.btn-text {
-  float: right;
-  margin: 11px 11px 0 0;
-  color: #fff;
-  font-size: 14px;
-  letter-spacing: 0.2px;
-  font-family: "Roboto";
-}
-
-@media only screen and (min-width: 992px) {
-  .data-vis-wrapper {
-    flex-direction: row;
-  }
-  .data-vis-wrapper .recharts-responsive-container {
-    flex-basis: 50%;
-    max-width: 50%;
-    min-width: auto;
-    margin: 0 auto;
+@media screen and (max-width: 768px) {
+  #event-list, .charts-container {
+    grid-template-columns: 1fr;
   }
 }

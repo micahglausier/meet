@@ -1,49 +1,22 @@
-import React, { Component } from "react";
+import { useState } from "react";
 
-class Event extends Component {
-  state = { collapsed: true };
-  toggleDetails = () => {
-    this.setState((prevState) => ({
-      collapsed: !prevState.collapsed,
-    }));
-  };
+const Event = ({ event }) => {
+  const [showDetails, setShowDetails] = useState(false);
 
-  render() {
-    const { event } = this.props;
-    const { collapsed } = this.state;
-
-    return (
-      <div className="event">
-        <h1 className="summary">{event.summary}</h1>
-        <p className="event-start">
-          {new Date(event.start.dateTime).toString()}
-        </p>
-        <p className="event-location">
-          {`@${event.summary} | ${event.location}`}
-        </p>
-
-        {!collapsed && (
-          <div className="event-details">
-            <h2 className="about">About event:</h2>
-            <a
-              className="link"
-              href={event.htmlLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              See details on Google Calendar
-            </a>
-
-            <p className="description">{event.description}</p>
-          </div>
-        )}
-
-        <button className="details-button" onClick={() => this.toggleDetails()}>
-          {collapsed ? "show" : "hide"} details
-        </button>
-      </div>
-    );
-  }
-}
+  return (
+    <li className="event">
+      <h2>{event.summary}</h2>
+      <p>{event.created}</p>
+      <p>{event.location}</p>
+      <button className="details-btn" onClick={() => setShowDetails(!showDetails)}>Show Details</button>
+      {showDetails ? (
+        <div className="event-details" data-testid="event-details">
+            <p className="details">{event.description}</p>
+            <button ariaHidden="true" className="hide-details-btn" onClick={() => setShowDetails(!showDetails)}>Hide Details</button>
+        </div>
+      ) : null}
+    </li>
+  );
+};
 
 export default Event;
