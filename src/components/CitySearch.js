@@ -1,73 +1,73 @@
-import React, { Component } from "react";
-import { InfoAlert } from './Alert';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 
-class CitySearch extends Component {
-  state = {
-    query: "",
-    suggestions: [],
-    showSuggestions: undefined,
-    infoText: "",
-  };
+const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
 
-  handleInputChanged = (event) => {
+  // make sure suggestions update on App render
+  useEffect(() => {
+    setSuggestions(allLocations);
+  }, [`${allLocations}`]);
+
+  //handle input change
+  const handleInputChange = ((event) => {
+    //get current input value
     const value = event.target.value;
-    this.setState({
-      showSuggestions:true});
-    const suggestions = this.props.locations.filter((location) => {
-      return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
-    });
-    if (suggestions.length === 0) {
-      this.setState({
-        query: value,
-        infoText: 'We can not find the city you are looking for. Please try another city',
-      });
+    
+    //filter all locations to match input
+    const filteredLocations = allLocations ? allLocations.filter((location) => {
+        return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
+    }) : [];
+
+    setQuery(value);
+    setSuggestions(filteredLocations);
+
+    // define info alert message if no city is found
+    let infoText;
+    if (filteredLocations.length === 0) {
+      infoText = "We can not find the city you are looking for. Please try another city";
     } else {
-      return this.setState({
-        query: value,
-        suggestions,
-        infoText:''
-      });
+      infoText = "";
     }
-  };
+    setInfoAlert(infoText);
+  })
 
-  handleItemClicked = (suggestion) => {
-    this.setState({
-      query: suggestion,
-      showSuggestions: false
-    });
-  
-    this.props.updateEvents(suggestion);
+  //handle suggestion click
+  const handleItemClicked = (event) => {
+    const value = event.target.textContent;
+    setQuery(value);
+    setShowSuggestions(false);
+    setCurrentCity(value);
+    setInfoAlert("");
   }
 
-  render() {
-    return (
-      <div className="CitySearch">
-        <InfoAlert text={this.state.infoText} />
-        <label htmlFor="CitySearch">Name of City:</label>
-        <input
-          type="text"
-          className="city"
-          value={this.state.query}
-          onChange={this.handleInputChanged}
-          onFocus={() => {this.setState({ showSuggestions: true }) }}
-          placeholder="Type City Name Here"
-        />
-        <ul className="suggestions" style={this.state.showSuggestions ? {}: { display: 'none' }}>
-          {this.state.suggestions.map((suggestion) => (
-            <li
-              key={suggestion}
-              onClick={() => this.handleItemClicked(suggestion)}
-            >
-              {suggestion}
+  return (
+    <div id="city-search">
+      <label htmlFor="city-search-bar">Your location: </label>
+      <input
+        type="text"
+        className="city"
+        id="city-search-bar"
+        placeholder="Search for a city"
+        text-align="center"
+        value={query}
+        onFocus={() => setShowSuggestions(true)}
+        onChange={handleInputChange}
+      />
+      {showSuggestions ? 
+        <ul className="suggestions">
+            {/* return suggestions based off input */}
+            {suggestions.map((suggestion) => {
+                return <li key={suggestion} className="city-suggestion" onClick={handleItemClicked}>{suggestion}</li>
+            })}
+            <li key="See all cities" onClick={handleItemClicked}>
+                <b>See all cities</b>
             </li>
-          ))}
-          <li onClick={() => this.handleItemClicked("all")}>
-            <b>See all cities</b>
-          </li>
-        </ul>
-      </div>
-    );
-  }
-}
+        </ul> : null}
+    </div>
+  );
+};
 
 export default CitySearch;
