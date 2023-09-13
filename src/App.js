@@ -48,7 +48,6 @@ const App = () => {
     <div className="App">
       <div className="app-header">
           <h1 >Meet App</h1>
-        <h2>Coding Events</h2>
       </div>
       {/* render alert if there's a search error */}
       <div className="alerts-container">
