@@ -74,14 +74,15 @@ input[type="number"] {
 .alerts-container {
   right: 5%;
   z-index: 1000;
-  background-color: transparent;
+  background-color: #f34c19;
+  color: white;
   width: 250px;
   position: absolute;
   border: none;
-  top: 90px;
+  top: 350px;
   z-index: 2;
   align-self: center;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+  box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
 
 label {
@@ -133,6 +134,7 @@ label {
   column-gap: 15px;
   row-gap: 15px;
   background-color: #343F71;
+  
 }
 
 .event {
@@ -141,6 +143,7 @@ label {
   border: 1px solid whitesmoke;
   border-radius: 4px;
   position: relative;
+  box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
 
 .details-btn, .hide-details-btn {
